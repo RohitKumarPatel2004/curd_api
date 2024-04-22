@@ -48,8 +48,8 @@ app.post('/users/data', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
         const newSerial = result[0].max_serial + 1;
-        const sql = "INSERT INTO login (id, name, email, password, cpassword) VALUES (?, ?, ?, ?, ?)";
-        const values = [newSerial, req.body.name, req.body.email, req.body.password, req.body.cpassword];
+        const sql = "INSERT INTO login (id, name, email, password ) VALUES ( ?, ?, ?, ?)";
+        const values = [newSerial, req.body.name, req.body.email, req.body.password];
         db.query(sql, values, (err, result) => {
             if (err) {
                 console.error(err);
